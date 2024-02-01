@@ -1,39 +1,29 @@
-<h1 align="center">Data Structures</h1>
-<h2 align="center">Part - 1</h2>
-
-
-- <h3>Program No.1</h3>
-<p>
-Array Implementation of List ADT
+Program No.1
+    
+/* Array Implementation of List ADT
 Implement the List ADT using an array by implementing the following functions.
-</p>
-<p>
+
 bool isEmpty()
 It returns true if the list is empty. Else, it returns false.
-</p>
-<p>
+
 void insert(int data, int position)
 It inserts the given data at the given position in the list.
 If the list is full, then it must print "List is Full".
 If the position is invalid, then it must print "Invalid Position".
 A valid position is from 1 to X+1 (where X = size of the list).
-</p>
-<p>
+
 void remove(int data)
 If the data is present in the list, then it removes the first occurrence of the data from the list.
 Else, it must print "Data not found".
-</p>
-<p>
+    
 void search(int data)
 If the data is present in the list, then it must print "Data found at the position" followed by the position of the first occurrence of the data.
 Else, it must print "Data not found".
-</p>
-<p>
+    
 void display()
 If the list is not empty, then it prints all data in the list separated by a space.
 Else, it must print "List is Empty".
-</p>
-<p>
+    
 The query type can be any one of the following types.
 1 - Insert
 2 - Delete
@@ -42,8 +32,6 @@ The query type can be any one of the following types.
 5 - Print Reverse
 Note: The size of the list is always 100.
 IMPORTANT: Do not implement the function printReverse() as it is already implemented.
-</p>
-<p>
 Example Input/Output 1:
 Input:
 31
@@ -100,10 +88,10 @@ List is Empty
 Data not found
 List is Empty
 Invalid Position
-200 100 300 300 100 200
-</p>
+200 100 300 300 100 200 */
 
-```cpp
+
+
 #include <iostream>
 #define MAXSIZE 100
 using namespace std;
@@ -205,4 +193,4 @@ int main() {
     }
     return 0;
 }
-```
+
