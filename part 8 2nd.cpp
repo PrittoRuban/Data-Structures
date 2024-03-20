@@ -1,49 +1,47 @@
-void insert(vector<int> &minHeap, int val) {
-    if(minHeap.size()-1== MAXSIZE){
-        cout<<"Heap is full" <<endl;
-        return;
-    }
-    minHeap.push_back(val);
-    int child = minHeap.size() - 1;
-    int parent = child / 2;
-    while (child > 1) {
-        if (minHeap[child] < minHeap[parent]) {
-            int x = minHeap[child];
-            minHeap[child] = minHeap[parent];
-            minHeap[parent] = x;
-            child = parent;
-            parent = child / 2;
-        } else {
-            break;
-        }
-    }
-}
+#include<bits/stdc++.h>
+using namespace std;
 
-int extractMin(vector<int>&minHeap){
-    if(minHeap.size()==1){
-        return minHeap[1];
-    }
-    int x = minHeap[1];
-    minHeap[1] = minHeap[minHeap.size() - 1];
-    minHeap.pop_back();
-    int parent = 1;
-    int child;
-    while (true) {
-        child = 2 * parent;
-        if (child >= minHeap.size()) {
-            break;
-        }
-        if (child + 1 < minHeap.size() && minHeap[child + 1] < minHeap[child]) {
-            child++;
-        }
-        if (minHeap[parent] > minHeap[child]) {
-            int t = minHeap[parent];
-            minHeap[parent] = minHeap[child];
-            minHeap[child] = t;
-            parent = child;
-        } else {
-            break;
+int main() {
+    int R, C, T;
+    cin >> R >> C;
+    vector<vector<char>> grid(R, vector<char>(C));
+    vector<vector<bool>> visited(R, vector<bool>(C, false));
+    pair<int, int> firstExplosive;
+    int totalExplosives = 0;
+    for(int i = 0; i < R; i++) {
+        for(int j = 0; j < C; j++) {
+            cin >> grid[i][j];
+            if(grid[i][j] == 'E' || grid[i][j] == 'F') {
+                totalExplosives++;
+                if(grid[i][j] == 'F') {
+                    firstExplosive = {i, j};
+                }
+            }
         }
     }
-    return x;
+    cin >> T;
+    queue<pair<int, int>> q;
+    q.push(firstExplosive);
+    visited[firstExplosive.first][firstExplosive.second] = true;
+    int time = 0, exploded = 0;
+    int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+    int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+    while(!q.empty()) {
+        int size = q.size();
+        exploded += size;
+        for(int i = 0; i < size; i++) {
+            pair<int, int> cur = q.front();
+            q.pop();
+            for(int j = 0; j < 8; j++) {
+                int nx = cur.first + dx[j], ny = cur.second + dy[j];
+                if(nx >= 0 && nx < R && ny >= 0 && ny < C && !visited[nx][ny] && (grid[nx][ny] == 'E' || grid[nx][ny] == 'F')) {
+                    q.push({nx, ny});
+                    visited[nx][ny] = true;
+                }
+            }
+        }
+        if(!q.empty()) time += T;
+    }
+    cout << totalExplosives - exploded << " " << time << endl;
+    return 0;
 }
