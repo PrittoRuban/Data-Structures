@@ -1,3 +1,4 @@
+
 void insertNode(Node* node, int rootData, int data, char pos)
 {
     if (node != nullptr)
