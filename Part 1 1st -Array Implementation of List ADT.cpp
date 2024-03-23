@@ -1,4 +1,4 @@
-Program No.1
+
     
 /* Array Implementation of List ADT
 Implement the List ADT using an array by implementing the following functions.
