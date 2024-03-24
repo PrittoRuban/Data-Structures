@@ -1,3 +1,4 @@
+
 void computeLPSArray(string pattern, int lps[]) {
     int len = 0;
     int i = 1;
